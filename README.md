@@ -1,3 +1,5 @@
+AWS SERVICES
+-
 1. Compute & Containers
 •	Amazon EC2 – Virtual machines for hosting applications.
 •	AWS Lambda – Serverless computing for running code without managing servers.
@@ -46,9 +48,9 @@
 10. Observability & Performance Optimization
 •	AWS Cost Explorer – Analyzes AWS costs and usage.
 •	AWS Trusted Advisor – Provides best practice recommendations for security, cost, and performance.
-
-
+__________________________________________________________
 DevSecOps Fits into DevOps (Integration in CI/CD Pipeline)
+-
 Stage	DevSecOps Tools & Practices
 Code	Secure coding practices, SonarQube, Checkmarx
 Build	Dependency scanning (Snyk, Black Duck)
@@ -56,8 +58,9 @@ Test	SAST, DAST, OWASP ZAP
 Release	Security policies (Checkov, Terrascan)
 Deploy	Container security (Trivy, Aqua Security)
 Monitor	Threat detection (Falco, AWS Security Hub)
-Terraform 
-
+_______________________________________
+TERAFORM 
+---------
 Let's start with a basic Terraform script for deploying an AWS EC2 instance. I'll break down each line, explain mandatory fields, and highlight common configurations.
 📝 Terraform Script for AWS EC2 Instance
 hcl
@@ -100,18 +103,21 @@ key_name = "my-key"	       Specifies an SSH key pair for secure instance login.	
 user_data = <<-EOF ... EOF     Cloud-init script that runs on instance launch. Useful for automation like installing packages or setting up web servers.	⭕ Optional
 ________________________________________
 ✅ Mandatory Fields for EC2 in Terraform
+-
 1.	ami → Defines the OS image
 2.	instance_type → Specifies instance size
 3.	provider block → Essential to define the cloud provider
 ________________________________________
 🌍 Common Fields in Terraform Scripts
+-
 Field	Purpose
 tags	Adds metadata for easier identification.
 security_groups	Controls traffic rules for EC2 instances.
 key_name	Defines the SSH key for instance access.
 user_data	Automates post-launch configurations.
-
+_______________________________________
 Terraform Script: VPC, 100 EC2 Instances (in 2 regions), and 50 S3 Buckets
+-
 hcl
 CopyEdit
 # --------------------------------------
@@ -230,6 +236,7 @@ resource "aws_s3_bucket" "s3_secondary" {
 }
 ________________________________________
 Mandatory Fields (Critical for Execution)
+-
 Below are the essential fields that must be present for each resource to be successfully created:
 ✅ Provider Configuration
 •	region → Defines the AWS region for deployment.
@@ -252,6 +259,7 @@ Below are the essential fields that must be present for each resource to be succ
 •	bucket → Specifies the unique bucket name.
 ________________________________________
 Optional (But Recommended) Fields
+-
 While these aren't mandatory, they add better management and scalability:
 ✅ Tags → Helps identify resources easily.
 ✅ Map Public IP (for subnets) → Ensures instances can communicate over the internet.
